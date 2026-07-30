@@ -474,6 +474,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(0,0,0,.08);
   }
+  .topbar-right { display: flex; align-items: center; gap: 10px; }
+  .topbar-right .icon-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 10px;
+    background: #111; color: #fff;
+    transition: transform .3s var(--spring), background .3s ease, color .3s ease;
+  }
+  .topbar-right .icon-btn:hover { transform: translateY(-2px) rotate(-6deg) scale(1.08); background: var(--yellow); color: #000; }
   .topbar-cta { padding: 10px 20px; font-size: 13px; }
   .svc-grid { grid-template-columns: 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
