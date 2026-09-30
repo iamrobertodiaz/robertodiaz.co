@@ -87,12 +87,31 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .float-1 > div, .float-2 > div { animation: floatBob 5.5s ease-in-out 3.4s infinite; }
 .float-2 > div { animation-duration: 6.5s; }
 
+/* ---------- scroll progress bar ---------- */
+.scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 998; background: transparent; }
+.scroll-progress i { display: block; height: 100%; width: 0%; background: var(--yellow); box-shadow: 0 0 12px rgba(255,255,35,.6); transition: width .1s linear; }
+
+/* ---------- hero cursor glow ---------- */
+.hero-glow {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(560px circle at var(--gx, 50%) var(--gy, 40%), rgba(255,255,35,.20), transparent 62%);
+  opacity: 0; transition: opacity .5s ease;
+}
+.hero:hover .hero-glow { opacity: 1; }
+
+/* ---------- split-word headline reveal ---------- */
+.split-reveal .word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+.split-reveal .word-inner { display: inline-block; transform: translateY(112%); transition: transform .75s var(--spring); }
+.split-reveal.in .word-inner { transform: translateY(0); }
+
 @media (prefers-reduced-motion: reduce) {
   .preloader { display: none; }
   .reveal, .reveal.bounce { opacity: 1; transform: none; transition: none; }
   .hero-giant .g, .intro-portrait, .intro-rise, .intro-pop, .intro-pop-2, .intro-late { animation: none; opacity: 1; }
   .float-1 > div, .float-2 > div { animation: none; }
   .marquee-track, .ticker-track { animation: none !important; }
+  .split-reveal .word-inner { transform: none; transition: none; }
+  .hero-glow { display: none; }
   html { scroll-behavior: auto; }
 }
 
@@ -276,6 +295,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .side-ticker { padding: 12px 0; overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); }
 .ticker-track { display: flex; align-items: center; gap: 16px; width: max-content; animation: marquee 26s linear infinite; }
+.side-ticker:hover .ticker-track { animation-play-state: paused; }
 .ticker-track span { font-family: var(--font-display); font-weight: 900; font-size: 13px; letter-spacing: .05em; white-space: nowrap; color: var(--ink); }
 .ticker-track i { font-style: normal; color: #111; font-size: 10px; opacity: .5; }
 
@@ -296,6 +316,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .marquee-label { text-align: center; font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 26px; padding: 0 20px; }
 .marquee { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
 .marquee-track { display: flex; align-items: center; gap: 44px; width: max-content; animation: marquee 40s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
 .marquee-track span { font-family: var(--font-display); font-weight: 900; font-size: clamp(28px, 3.6vw, 50px); letter-spacing: -.01em; white-space: nowrap; color: var(--ink); }
 .marquee-track i { font-style: normal; color: #9b9800; font-size: 22px; }
 @keyframes marquee { to { transform: translateX(-50%); } }

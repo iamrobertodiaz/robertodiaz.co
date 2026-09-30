@@ -15,13 +15,40 @@
     btn.innerHTML = `<span class="roll"><span>${label}</span><span>${label}</span></span>`;
   });
 
+  /* ---------- split-word headline reveal (wraps each word for a per-word rise) ---------- */
+  const splitWords = (el) => {
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    let n;
+    while ((n = walker.nextNode())) textNodes.push(n);
+    let wordIndex = 0;
+    textNodes.forEach((node) => {
+      const parts = node.textContent.split(/(\s+)/);
+      const frag = document.createDocumentFragment();
+      parts.forEach((part) => {
+        if (part.trim() === "") { frag.appendChild(document.createTextNode(part)); return; }
+        const outer = document.createElement("span");
+        outer.className = "word";
+        const inner = document.createElement("span");
+        inner.className = "word-inner";
+        inner.textContent = part;
+        inner.style.transitionDelay = wordIndex * 0.045 + "s";
+        wordIndex++;
+        outer.appendChild(inner);
+        frag.appendChild(outer);
+      });
+      node.parentNode.replaceChild(frag, node);
+    });
+  };
+  document.querySelectorAll(".split-reveal").forEach(splitWords);
+
   /* ---------- reveal on scroll ---------- */
   const revealObserver = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (e.isIntersecting) { e.target.classList.add("in"); revealObserver.unobserve(e.target); }
     }
   }, { threshold: 0.12, rootMargin: "0px 0px -30px 0px" });
-  document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+  document.querySelectorAll(".reveal, .split-reveal").forEach((el) => revealObserver.observe(el));
 
   /* ---------- counters ---------- */
   const easeOut = (t) => 1 - Math.pow(1 - t, 3);
@@ -117,6 +144,41 @@
   };
   document.getElementById("copyEmail")?.addEventListener("click", copyEmail);
   document.getElementById("copyEmail2")?.addEventListener("click", copyEmail);
+
+  /* ---------- scroll progress bar ---------- */
+  const progressBar = document.querySelector("#scrollProgress i");
+  if (progressBar) {
+    const onProgress = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+      progressBar.style.width = pct + "%";
+    };
+    onProgress();
+    window.addEventListener("scroll", onProgress, { passive: true });
+    window.addEventListener("resize", onProgress);
+  }
+
+  /* ---------- hero cursor glow ---------- */
+  if (!reduceMotion && hero && matchMedia("(hover: hover)").matches) {
+    hero.addEventListener("mousemove", (e) => {
+      const r = hero.getBoundingClientRect();
+      hero.style.setProperty("--gx", ((e.clientX - r.left) / r.width) * 100 + "%");
+      hero.style.setProperty("--gy", ((e.clientY - r.top) / r.height) * 100 + "%");
+    });
+  }
+
+  /* ---------- magnetic buttons ---------- */
+  if (!reduceMotion && matchMedia("(hover: hover)").matches) {
+    document.querySelectorAll(".btn-yellow").forEach((btn) => {
+      btn.addEventListener("mousemove", (e) => {
+        const r = btn.getBoundingClientRect();
+        const dx = (e.clientX - r.left - r.width / 2) * 0.3;
+        const dy = (e.clientY - r.top - r.height / 2) * 0.3;
+        btn.style.transform = `translate(${dx}px, ${dy}px)`;
+      });
+      btn.addEventListener("mouseleave", () => { btn.style.transform = ""; });
+    });
+  }
 
   /* ---------- back to top ---------- */
   const toTop = document.getElementById("toTop");

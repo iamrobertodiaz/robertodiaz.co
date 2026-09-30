@@ -62,6 +62,9 @@
 </head>
 <body>
 
+<!-- ======= SCROLL PROGRESS ======= -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"><i></i></div>
+
 <!-- ======= PRELOADER ======= -->
 <div class="preloader" id="preloader" aria-hidden="true">
   <div class="pre-logo">ROBERTODIAZ<span>&reg;</span></div>
@@ -86,6 +89,7 @@
 
 <!-- ======= HERO (full-bleed landing) ======= -->
 <section class="hero" id="home">
+  <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
   <h1 class="hero-giant" aria-label="DIAZ" data-depth="0.14"><span class="g g1">D</span><span class="g g2">I</span><span class="g g3">A</span><span class="g g4">Z</span></h1>
 
   <div class="hero-portrait-wrap intro-portrait" data-depth="-0.04">
@@ -207,7 +211,7 @@
   <!-- ABOUT (interactive flip cards) -->
   <section class="section" id="about">
     <p class="eyebrow reveal">About Me <span class="amp">(&amp;)</span></p>
-    <h2 class="h2 reveal d-1">Both Worlds.<br/>One Person.</h2>
+    <h2 class="h2 split-reveal">Both Worlds.<br/>One Person.</h2>
     <p class="section-intro reveal d-2">Nine years across live production, post-production, creative agencies, and enterprise entertainment. Most IT people don't get creative work, and most creatives don't get enterprise tech. I've lived in both. Flip the cards.</p>
 
     <div class="flip-grid">
@@ -288,7 +292,7 @@
   <!-- MY WORK -->
   <section class="section" id="work">
     <p class="eyebrow reveal">Selected Work</p>
-    <h2 class="h2 reveal d-1">Built to<br/>Perform</h2>
+    <h2 class="h2 split-reveal">Built to<br/>Perform</h2>
     <p class="section-intro reveal d-2">Systems I've designed, built, and run. Different rooms, same standard: it has to work every single day, for the people who rely on it.</p>
 
     <div class="work-list">
@@ -348,13 +352,21 @@
           <p>A native Mac app that syncs events between calendars already set up in Apple Calendar. No OAuth, no new login, no blocked SAML integrations, all local.</p>
         </div>
       </a>
+      <a class="work-row reveal" href="https://www.robtube.org" target="_blank" rel="noopener">
+        <span class="work-num">08</span>
+        <div class="work-body">
+          <div class="work-tags"><span>Web</span><span>Privacy-First</span></div>
+          <h3>RobTube <span class="work-ext">&nearr;</span></h3>
+          <p>Paste a link, get the video or the MP3. Everything runs client-side in the browser, nothing is uploaded or stored on a server.</p>
+        </div>
+      </a>
     </div>
   </section>
 
   <!-- WHAT YOU GET -->
   <section class="section" id="what-you-get">
     <p class="eyebrow reveal">Capabilities Overview</p>
-    <h2 class="h2 reveal d-1">What<br/>You Get?</h2>
+    <h2 class="h2 split-reveal">What<br/>You Get?</h2>
     <p class="section-intro reveal d-2">One person who understands enterprise technology and how creative work actually gets made. Nothing lost in translation.</p>
 
     <div class="cap-list">
@@ -369,7 +381,7 @@
   <!-- SERVICES -->
   <section class="section" id="services">
     <p class="eyebrow reveal">Services</p>
-    <h2 class="h2 reveal d-1">Consulting for<br/>Creative Companies</h2>
+    <h2 class="h2 split-reveal">Consulting for<br/>Creative Companies</h2>
     <p class="section-intro reveal d-2">For studios, post houses, trailer houses, agencies, and production companies. Same attention to detail, scoped to what you need right now.</p>
 
     <div class="svc-grid">
@@ -434,7 +446,7 @@
   <!-- FAQ -->
   <section class="section" id="faq">
     <p class="eyebrow reveal">FAQ</p>
-    <h2 class="h2 reveal d-1">Got any<br/>questions?</h2>
+    <h2 class="h2 split-reveal">Got any<br/>questions?</h2>
 
     <div class="faq-grid">
       <div class="faq-item reveal bounce"><button class="faq-q">What kind of companies do you work with?<span>+</span></button><div class="faq-a"><p>Studios, post houses, trailer houses, agencies, production companies, and growing businesses. Anywhere technology needs to quietly power creative work instead of getting in its way.</p></div></div>
@@ -448,7 +460,7 @@
 
   <!-- CONTACT -->
   <section class="section contact" id="contact">
-    <h2 class="contact-h reveal">Have something<br/>in mind?</h2>
+    <h2 class="contact-h split-reveal">Have something<br/>in mind?</h2>
     <a href="mailto:hi@robertodiaz.co" class="btn-yellow btn-big roll-btn reveal d-1">Let's Talk</a>
     <div class="contact-links reveal d-2">
       <button class="contact-pill" id="copyEmail2">hi@robertodiaz.co
